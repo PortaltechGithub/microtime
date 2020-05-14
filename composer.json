@@ -1,0 +1,21 @@
+{
+  "name": "kairichter/microtime",
+  "description": "Microtime helper",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Kai Richter",
+      "email": "k.richter@reply.de",
+      "homepage": "https://portaltech.reply.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+        "Kairichter\\Microtime\\": "src/"
+    }
+  }
+}
