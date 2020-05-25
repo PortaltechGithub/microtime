@@ -17,18 +17,18 @@ To [add a dependency](https://getcomposer.org/doc/04-schema.md#package-links) to
 
 Run the following to use the latest stable version
 ```sh
-    composer require kairichter/microtime
+    composer require reply/microtime
 ```
 or if you want the latest master version
 ```sh
-    composer require kairichter/microtime:dev-master
+    composer require reply/microtime:dev-master
 ```
 
 You can of course also manually edit your composer.json file
 ```json
 {
     "require": {
-       "kairichter/microtime": "^1.0"
+       "reply/microtime": "^1.0"
     }
 }
 ```
@@ -41,7 +41,7 @@ The following is a basic usage example of the Microtime library:
 ```php
 <?php
 
-use Kairichter\Microtime\Microtime;
+use Reply\Microtime\Microtime;
 
 // Creates a Microtime object from current timestamp
 $microtime = Microtime::fromNow();
@@ -92,5 +92,5 @@ $dateTimeImmutable = $microtime->toDateTimeImmutable();
 
 You're welcome to contribute to Microtime. Below are some of the things that you can do to contribute.
 
-- [Fork the repository](https://github.com/kairichter/microtime/fork) and [request a pull](https://github.com/kairichter/microtime/pulls) to the [develop](https://github.com/kairichter/microtime/tree/develop) branch.
-- Submit [bug reports or feature requests](https://github.com/kairichter/microtime/issues) to GitHub.
+- [Fork the repository](https://github.com/reply/microtime/fork) and [request a pull](https://github.com/reply/microtime/pulls) to the [develop](https://github.com/reply/microtime/tree/develop) branch.
+- Submit [bug reports or feature requests](https://github.com/reply/microtime/issues) to GitHub.

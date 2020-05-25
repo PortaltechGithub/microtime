@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kairichter\Microtime;
+namespace Reply\Microtime;
 
 use DateTime;
 use DateTimeInterface;
@@ -60,7 +60,7 @@ class Microtime implements MicrotimeInterface
      */
     public static function fromFloat(float $float): Microtime
     {
-        return new static((string) $float);
+        return new static(\DateTime::createFromFormat('U.u', (string) $float));
     }
 
     /**
@@ -68,9 +68,9 @@ class Microtime implements MicrotimeInterface
      */
     public static function fromMicroseconds(int $int): Microtime
     {
-        $string = intval($int/10**6) . '.' . str_pad($int % 10**6, 6, '0', STR_PAD_LEFT);
+        $string = intval($int/10**6) . '.' . str_pad(strval($int % 10**6), 6, '0', STR_PAD_LEFT);
 
-        return new static($string);
+        return new static(\DateTime::createFromFormat('U.u', $string));
     }
 
     /**
@@ -78,7 +78,7 @@ class Microtime implements MicrotimeInterface
      */
     public static function fromSeconds(int $int): Microtime
     {
-        return new static($int . '.000000');
+        return new static(\DateTime::createFromFormat('U.u', $int . '.000000'));
     }
 
     /**
@@ -88,9 +88,9 @@ class Microtime implements MicrotimeInterface
     {
         list($microseconds, $seconds) = explode(' ', $microtime);
 
-        $date = \DateTime::createFromFormat('U 0.u', $seconds . ' ' . substr($microseconds, 0, 8));
+        $string = $seconds . ' ' . substr($microseconds, 0, 8);
 
-        return static::fromDateTime($date);
+        return new static(\DateTime::createFromFormat('U 0.u', $string));
     }
 
     /**
@@ -98,7 +98,7 @@ class Microtime implements MicrotimeInterface
      */
     public static function fromDateTime(DateTimeInterface $dateTime): Microtime
     {
-        return new static($dateTime->format('U.u'));
+        return new static($dateTime);
     }
 
     /**
@@ -112,7 +112,9 @@ class Microtime implements MicrotimeInterface
             '0',
             STR_PAD_RIGHT
         );
+
         $seconds = $this->dateTime->getTimestamp();
+
         return sprintf(
             '%d%s',
             $seconds,
@@ -141,7 +143,7 @@ class Microtime implements MicrotimeInterface
      */
     public function toMicrotime(): string
     {
-        return sprintf('0.%d00 %d', substr($this->dateTime->format('u'), 0, 6), $this->dateTime->getTimestamp());
+        return sprintf('0.%d00 %d', substr($this->dateTime->format('u'), 0, 6), $this->dateTime->format('U'));
     }
 
     /**
@@ -169,14 +171,10 @@ class Microtime implements MicrotimeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param DateTimeInterface $date
      */
-    protected function __construct(string $string)
+    protected function __construct(DateTimeInterface $date)
     {
-        if (strpos($string, '.') !== false) {
-            $this->dateTime = \DateTime::createFromFormat('U.u', $string);
-        } else {
-            $this->dateTime = \DateTime::createFromFormat('U', $string);
-        }
+        $this->dateTime = $date;
     }
 }
