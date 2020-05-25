@@ -28,7 +28,7 @@ You can of course also manually edit your composer.json file
 ```json
 {
     "require": {
-       "reply/microtime": "^1.0"
+       "reply/microtime": "^2.0"
     }
 }
 ```
