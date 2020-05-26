@@ -92,5 +92,5 @@ $dateTimeImmutable = $microtime->toDateTimeImmutable();
 
 You're welcome to contribute to Microtime. Below are some of the things that you can do to contribute.
 
-- [Fork the repository](https://github.com/reply/microtime/fork) and [request a pull](https://github.com/reply/microtime/pulls) to the [develop](https://github.com/reply/microtime/tree/develop) branch.
-- Submit [bug reports or feature requests](https://github.com/reply/microtime/issues) to GitHub.
+- [Fork the repository](https://github.com/PortaltechGithub/microtime/fork) and [request a pull](https://github.com/PortaltechGithub/microtime/pulls) to the [develop](https://github.com/PortaltechGithub/microtime/tree/develop) branch.
+- Submit [bug reports or feature requests](https://github.com/PortaltechGithub/microtime/issues) to GitHub.
