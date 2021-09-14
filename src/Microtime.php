@@ -60,7 +60,12 @@ class Microtime implements MicrotimeInterface
      */
     public static function fromFloat(float $float): Microtime
     {
-        return new static(\DateTime::createFromFormat('U.u', (string) $float));
+        $string = (string) $float;
+        $dotPosition = strpos($string, '.');
+        if ($dotPosition === false) {
+            $string = sprintf('%s.%s', $string, '0');
+        }
+        return new static(\DateTime::createFromFormat('U.u', $string));
     }
 
     /**

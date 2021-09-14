@@ -5,10 +5,12 @@ use Reply\Microtime\Microtime;
 
 class MicrotimeTest extends TestCase
 {
-    const VALUE_STRING       = '0.66153000 1590417215';
-    const VALUE_MICROSECONDS = 1590417215661530;
-    const VALUE_SECONDS      = 1590417215;
-    const VALUE_FLOAT        = 1590417215.6615;
+    const VALUE_STRING               = '0.66153000 1590417215';
+    const VALUE_MICROSECONDS         = 1590417215661530;
+    const VALUE_SECONDS              = 1590417215;
+    const VALUE_FLOAT                = 1590417215.6615;
+    const VALUE_FLOAT_ZERO_PRECISION = 2.0;
+    const VALUE_FLOAT_LOW_PRECISION  = 2.01;
 
     public function testCanBeCreatedFromCurrentTimestamp()
     {
@@ -28,6 +30,9 @@ class MicrotimeTest extends TestCase
     public function testCanBeCreatedFromFloat()
     {
         $this->checkObject(Microtime::fromFloat( static::VALUE_FLOAT ));
+        // a float can be rounded by PHP to 1 zero precision. this has to work too
+        $this->checkObject(Microtime::fromFloat( static::VALUE_FLOAT_LOW_PRECISION ));
+        $this->checkObject(Microtime::fromFloat( static::VALUE_FLOAT_ZERO_PRECISION ));
     }
 
     public function testCanBeCreatedFromMicroseconds()
